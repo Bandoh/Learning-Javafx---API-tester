@@ -37,7 +37,7 @@ public class MainController implements Initializable {
     public MenuButton reqtype_btn;
     public TextArea response_field;
     public ListView<HBox> header_fields;
-    public ListView<HBox>body_fields;
+    public ListView<HBox> body_fields;
     public Button switch_header_btn;
     public Button switch_body_btn;
     private String body;
@@ -79,9 +79,10 @@ public class MainController implements Initializable {
     }
 
     public void addField() {
-        if(body_fields.isVisible())setFields(body_fields);
-        if(header_fields.isVisible())setFields(header_fields);
-       
+        if (body_fields.isVisible())
+            setFields(body_fields);
+        if (header_fields.isVisible())
+            setFields(header_fields);
 
     }
 
@@ -96,16 +97,15 @@ public class MainController implements Initializable {
             Pane p1 = (Pane) i.getChildren().get(1);
             HBox h1 = (HBox) p1.getChildren().get(0);
             TextField tf1 = (TextField) h1.getChildren().get(1);
-            if(n.equals(body_fields)){
-                if (n.getItems().get(n.getItems().size()-1).equals(i)) {
+            if (n.equals(body_fields)) {
+                if (n.getItems().get(n.getItems().size() - 1).equals(i)) {
                     com += "\"" + tf.getText() + "\"" + ":" + "\"" + tf1.getText() + "\"" + "}";
                 } else {
                     com += "\"" + tf.getText() + "\"" + ":" + "\"" + tf1.getText() + "\"" + ",";
                 }
-            }
-            else if(n.equals(header_fields)){
-                if (n.getItems().get(n.getItems().size()-1).equals(i)) {
-                    com +=  tf.getText() + "," + tf1.getText() +"}";
+            } else if (n.equals(header_fields)) {
+                if (n.getItems().get(n.getItems().size() - 1).equals(i)) {
+                    com += tf.getText() + "," + tf1.getText() + "}";
                 } else {
                     com += tf.getText() + "," + tf1.getText() + ";";
                 }
@@ -115,13 +115,13 @@ public class MainController implements Initializable {
     }
 
     // private void basicAnim(Node n) {
-    //     FadeTransition fd = new FadeTransition();
-    //     fd.setNode(n);
-    //     fd.setFromValue(1.0);
-    //     fd.setToValue(0.0);
-    //     fd.setDuration(new Duration(500));
-    //     fd.setCycleCount(1);
-    //     fd.play();
+    // FadeTransition fd = new FadeTransition();
+    // fd.setNode(n);
+    // fd.setFromValue(1.0);
+    // fd.setToValue(0.0);
+    // fd.setDuration(new Duration(500));
+    // fd.setCycleCount(1);
+    // fd.play();
     // }
 
     public void switchHeader() {
@@ -140,15 +140,21 @@ public class MainController implements Initializable {
         System.out.println(reqtype_btn);
         String data = url_field.getText();
         if (!data.isEmpty()) {
-            data = "http://" + data;
+            if (!data.contains("http")) {
+                data = "http://" + data;
+            }
+
             WebEngine we = wb.getEngine();
             this.body = getH(body_fields);
             this.headers = getH(header_fields);
             System.out.println(this.body);
             System.out.println(this.headers);
-            String[] res = mh.reqHandler(data, this.body,this.headers);
+            String[] res = mh.reqHandler(data, this.body, this.headers);
             wb.setVisible(true);
-            we.loadContent(res[0], res[1]);
+            if (res[1].contains("image")) {
+                we.load(data);
+            } else
+                we.loadContent(res[0], res[1]);
             we.setUserStyleSheetLocation("data:,body { background-color: #001f3f; color:#83e85a }");
         }
     }
