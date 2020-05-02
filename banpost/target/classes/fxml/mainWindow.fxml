@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="798.0" style="-fx-background-color: -fx-back-color; -fx-background-radius: 13em; -fx-border-radius: 15em;" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bandoh.banpost.controllers.MainController">
+   <left>
+      <AnchorPane prefHeight="652.0" prefWidth="57.0" style="-fx-background-color: -fx-prim-dark;" BorderPane.alignment="CENTER">
+         <children>
+            <Circle fill="#001f3f" layoutX="29.0" layoutY="71.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Circle fill="#001f3f" layoutX="29.0" layoutY="137.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Circle fill="#001f3f" layoutX="29.0" layoutY="200.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+         </children></AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="479.0" prefWidth="719.0" style="-fx-background-color: -fx-prim;" stylesheets="@../styles/styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="57.0" layoutY="45.0" prefHeight="84.0" prefWidth="621.0" style="-fx-background-color: -fx-prim-dark;">
+               <children>
+                  <TextField fx:id="url_field" layoutX="182.0" layoutY="24.0" prefHeight="36.0" prefWidth="290.0" promptText="Enter URL" />
+                  <Button fx:id="send_btn" defaultButton="true" layoutX="494.0" layoutY="23.0" mnemonicParsing="false" onAction="#sendRequest" prefHeight="34.0" prefWidth="111.0" stylesheets="@../styles/styles.css" text="SEND" />
+                  <MenuButton fx:id="reqtype_btn" alignment="CENTER" layoutX="12.0" layoutY="24.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="115.0" stylesheets="@/styles/styles.css" text="GET">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+                  <Label layoutX="141.0" layoutY="33.0" style="-fx-text-fill: -fx-prim-light;" text="http://" />
+               </children>
+            </Pane>
+            <Pane layoutX="55.0" layoutY="395.0" prefHeight="243.0" prefWidth="621.0" style="-fx-background-color: -fx-prim-dark;">
+               <children>
+                  <WebView fx:id="wb" layoutX="7.0" layoutY="5.0" prefHeight="232.0" prefWidth="621.0" style="-fx-background-color: black;" visible="false" />
+               </children>
+            </Pane>
+            <Label layoutX="57.0" layoutY="365.0" style="-fx-text-fill: -fx-prim-light;" text="Response:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Pane layoutX="57.0" layoutY="189.0" prefHeight="160.0" prefWidth="621.0" style="-fx-background-color: -fx-prim-dark;">
+               <children>
+                  <ListView fx:id="header_fields" layoutX="1.0" layoutY="2.0" prefHeight="155.0" prefWidth="619.0" style="-fx-background-color: -fx-prim-dark;" />
+                  <ListView fx:id="body_fields" layoutX="1.0" layoutY="2.0" prefHeight="155.0" prefWidth="619.0" style="-fx-background-color: -fx-prim-dark;" />
+               </children>
+            </Pane>
+            <Label layoutX="58.0" layoutY="13.0" style="-fx-text-fill: -fx-prim-light;" text="Request:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="switch_body_btn" layoutX="181.0" layoutY="155.0" mnemonicParsing="false" onAction="#switchBody" prefHeight="34.0" prefWidth="111.0" styleClass="tab-btn" stylesheets="@../styles/styles.css" text="Body" />
+            <Button fx:id="switch_header_btn" layoutX="57.0" layoutY="155.0" mnemonicParsing="false" onAction="#switchHeader" prefHeight="34.0" prefWidth="111.0" styleClass="tab-btn" stylesheets="@../styles/styles.css" text="Headers" />
+            <Button layoutX="553.0" layoutY="155.0" mnemonicParsing="false" onAction="#addField" prefHeight="34.0" prefWidth="111.0" text="+ ADD" />
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="4.0" prefWidth="763.0" style="-fx-background-color: -fx-sec-color;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="697.0" layoutY="2.0" prefHeight="24.0" prefWidth="98.0">
+               <children>
+                  <ImageView fx:id="close_btn" fitHeight="26.0" fitWidth="21.0" layoutX="74.0" layoutY="2.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/c.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="21.0" layoutX="51.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/max.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="21.0" layoutX="25.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/min.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Text fill="#10052f" layoutX="10.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BanPost">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
