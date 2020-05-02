@@ -1,5 +1,5 @@
-# Learning-Javafx---Todo
+# Learning-Javafx---API-tester
 
-Minimalistic Todo app
+Minimalistic API-testing app
 
 ![alt text](./banpost.gif)
